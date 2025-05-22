@@ -1,7 +1,6 @@
-# @package eval.tofu.metrics.forget_Q_A_PARA_Prob
-
+# @package eval.tofu.metrics.forget_Q_A_Prob
 defaults:
-  - ../../data/datasets@datasets: TOFU_QA_forget_para
+  - ../../data/datasets@datasets: TOFU_QA_forget
   - ../../collator@collators: DataCollatorForSupervisedDatasetwithIndex
   # ^ get default dataset and generation config information
 
@@ -9,7 +8,7 @@ handler: probability
 batch_size: 32
 
 datasets:
-  TOFU_QA_forget_para:
+  TOFU_QA_forget:
     args:
       hf_args:
-        name: ${eval.tofu.forget_split}_perturbed
+        name: ${eval.tofu.forget_split}
