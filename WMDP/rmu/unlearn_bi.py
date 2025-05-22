@@ -84,14 +84,32 @@ def run_rmu(
                 retain_loss = torch.nn.functional.mse_loss(
                     updated_retain_activations, frozen_retain_activations
                 )
-                retain_loss *= args.alpha[topic_idx]
+                # retain_loss *= args.alpha[topic_idx]
 
                 # Update model
-                loss = unlearn_loss + retain_loss
                 optimizer.zero_grad()
-                loss.backward()
+                unlearn_gradient = []
+                retain_gradient = []
+                unlearn_loss.backward(retain_graph=True)
+                for param in params:
+                    unlearn_gradient.append(param.grad.clone())
+                optimizer.zero_grad()
+                retain_loss.backward()
+                for param in params:
+                    retain_gradient.append(param.grad.clone())
+
+                loss = unlearn_loss + retain_loss
+                tmp_upper = 0
+                tmp_lower = 0
+                for name, param in enumerate(params):
+                    tmp_upper += torch.sum(unlearn_gradient[name] * retain_gradient[name])
+                    tmp_lower += torch.sum(unlearn_gradient[name] ** 2)
+                for name, param in enumerate(params):
+                    param.grad = unlearn_gradient[name] + args.alpha[topic_idx]*(retain_gradient[name] - unlearn_gradient[name] * tmp_upper/tmp_lower)
+                
+                
                 optimizer.step()
-                print(f"loss: {loss.item():.4g} | unlearn_loss: {unlearn_loss.item():.4g} | retain_loss: {retain_loss.item():.4g} | param_change: {params[0].grad.abs().mean().item():.4g}")
+                print(f"loss: {loss.item():.4g} | unlearn_loss: {unlearn_loss.item():.4g} | retain_loss: {retain_loss.item():.4g} | ratio: {tmp_upper/tmp_lower} | param_change: {params[0].grad.abs().mean().item():.4g}")
                 
                 # ======= Logging ======
                 if args.verbose:
@@ -144,22 +162,22 @@ def get_args():
     parser.add_argument(
         "--forget_corpora",
         type=str,
-        default="bio-forget-corpus,cyber-forget-corpus",
+        default="bio-remove-dataset,cyber-forget-corpus",
         help="comma-separated list of corpora to forget",
     )
     ### rmu hyperparameters
-    parser.add_argument("--alpha", type=str, default="100,100", help="retain weight")
+    parser.add_argument("--alpha", type=str, default="1200,1200", help="retain weight")
     parser.add_argument(
         "--steering_coeffs",
         type=str,
-        default="20,20",
+        default="6.5,6.5",
         help="Steer vector weight in order of topic",
     )
     parser.add_argument("--lr", type=float, default=5e-5, help="learning rate")
     parser.add_argument("--min_len", type=int, default=0)
     parser.add_argument("--max_len", type=int, default=2000)
     parser.add_argument("--batch_size", type=int, default=4)
-    parser.add_argument("--max_num_batches", type=int, default=80)
+    parser.add_argument("--max_num_batches", type=int, default=150)
     parser.add_argument("--layer_id", type=int, default=7, help="layer to unlearn")
     parser.add_argument("--layer_ids", type=str, default="5,6,7", help="update layers")
     parser.add_argument("--param_ids", type=str, default="6", help="update params")
