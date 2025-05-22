@@ -1,0 +1,7 @@
+defaults:
+  - finetune
+
+handler: BLUR_NPO
+method_args:
+  beta: 0.1
+  retain_loss_type: NLL
