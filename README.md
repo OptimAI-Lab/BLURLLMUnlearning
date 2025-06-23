@@ -74,11 +74,10 @@ CUDA_VISIBLE_DEVICES=0 python3 -m rmu.unlearn_bi \
 ## 🐝 Citation  
 
 ```bibtex
-@article{BLUR2025,
-  author    = {Hadi Reisizadeh, Jinghan Jia, Zhiqi Bu,  Bhanukiran Vinzamuri, Anil Ramakrishna, Kai-Wei Chang, Volkan Cevher, Sijia Liu, Mingyi Hong},
-  title     = {BLUR: A Bi-Level Optimization Approach for LLM Unlearning},
-  journal   = {arXiv preprint},
-  year      = {2025},
-  url       = {https://arxiv.org/abs/2506.08164}
+@article{reisizadeh2025blur,
+  title={BLUR: A Bi-Level Optimization Approach for LLM Unlearning},
+  author={Reisizadeh, Hadi and Jia, Jinghan and Bu, Zhiqi and Vinzamuri, Bhanukiran and Ramakrishna, Anil and Chang, Kai-Wei and Cevher, Volkan and Liu, Sijia and Hong, Mingyi},
+  journal={arXiv preprint arXiv:2506.08164},
+  year={2025}
 }
 ```
