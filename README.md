@@ -79,6 +79,6 @@ CUDA_VISIBLE_DEVICES=0 python3 -m rmu.unlearn_bi \
   title     = {BLUR: A Bi-Level Optimization Approach for LLM Unlearning},
   journal   = {arXiv preprint},
   year      = {2025},
-  url       = {https://arxiv.org/abs/...}
+  url       = {https://arxiv.org/abs/2506.08164}
 }
 ```
