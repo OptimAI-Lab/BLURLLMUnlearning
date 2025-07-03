@@ -65,7 +65,3 @@ for split in "${forget_retain_splits[@]}"; do
     done
 done
 
-
-cd Desktop
-cd TOFU
-conda activate unlearning
