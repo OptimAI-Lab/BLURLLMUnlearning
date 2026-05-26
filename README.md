@@ -81,10 +81,11 @@ To directly use our unlearned models, please check our HuggingFace Collection:
 ## Citation  
 
 ```bibtex
-@article{reisizadeh2025blur,
-  title={BLUR: A Bi-Level Optimization Approach for LLM Unlearning},
+@inproceedings{reisizadeh2026blur,
+  title={Blur: A bi-level optimization approach for llm unlearning},
   author={Reisizadeh, Hadi and Jia, Jinghan and Bu, Zhiqi and Vinzamuri, Bhanukiran and Ramakrishna, Anil and Chang, Kai-Wei and Cevher, Volkan and Liu, Sijia and Hong, Mingyi},
-  journal={arXiv preprint arXiv:2506.08164},
-  year={2025}
+  booktitle={Proceedings of the 19th Conference of the European Chapter of the Association for Computational Linguistics (Volume 1: Long Papers)},
+  pages={7043--7058},
+  year={2026}
 }
 ```
