@@ -3,6 +3,7 @@
 # BLUR: A Bi-Level Optimization Approach for LLM Unlearning
 
 [![preprint](https://img.shields.io/badge/arXiv-2506.08164-B31B1B)](https://arxiv.org/abs/2506.08164)
+[![collection](https://img.shields.io/badge/HuggingFace-Collection-yellow)](https://huggingface.co/collections/OptimAI-Lab/blur)
 
 </div>
 
