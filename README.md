@@ -31,7 +31,6 @@ git clone https://github.com/EleutherAI/lm-evaluation-harness.git
 cd lm-evaluation-harness
 pip install -e .
 ```
----
 
 ## Running the Experiments  
 
@@ -60,7 +59,6 @@ for algo in 'BLO_forget_lower_npo_gdr'; do
             --gama $GAMA 
 done
 ```
----
 
 ### **Running WMDP**  
 
@@ -74,8 +72,6 @@ CUDA_VISIBLE_DEVICES=0 python3 -m rmu.unlearn_bi \
     --steering_coeffs 6.5,6.5 --alpha 800,800 \
     --lr 5e-5 --seed 0 --output_dir models/bi_unlearn
 ```
-
----
 
 ## Download Models
 
