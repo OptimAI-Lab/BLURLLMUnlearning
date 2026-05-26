@@ -75,7 +75,7 @@ CUDA_VISIBLE_DEVICES=0 python3 -m rmu.unlearn_bi \
 
 ## Download Models
 
-To directly use our unlearned models, please refer to our HuggingFace Collection:
+To directly use our unlearned models, please check our HuggingFace Collection:
 * [🤗 OptimAI-Lab/BLUR](https://huggingface.co/collections/OptimAI-Lab/blur)
 
 ## Citation  
